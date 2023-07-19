@@ -1,7 +1,7 @@
 function Header() {
   return(
     <div className="header">
-      <h1>SARAH BIRTHDAY PLEASE CUM</h1>
+      <h1>SARAH'S 27th BIRTHDAY SMASH</h1>
     </div>
   )
 }
