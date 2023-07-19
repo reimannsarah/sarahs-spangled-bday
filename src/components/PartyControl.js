@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import GuestList from './GuestList';
+import Header from './Header';
+import NavBar from './NavBar';
 import PartyDetails from './PartyDetails';
 import RSVPConfirm from './RSVPConfirm';
 import RSVPForm from './RSVPForm';
@@ -8,7 +10,7 @@ function PartyControl() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(null);
   const [guestList, setGuestList] = useState([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [rsvp, setRsvp] = useState(null);
   const [showGuestList, setShowGuestList] = useState(null);
   const [partyDetailsPage, setPartyDetailsPage] = useState(true);
@@ -16,7 +18,7 @@ function PartyControl() {
   const [deleteConfirm, setDeleteConfirm] = useState(null);
 
   useEffect(() => {
-    fetch(`https://localhost:5001/api/Attendants`)
+    fetch(`https://sarah-reimann-bday.azurewebsites.net/api/Attendants`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status}: ${response.statusText}`)
@@ -32,17 +34,18 @@ function PartyControl() {
         setError(error.message)
         setIsLoaded(true)
       });
-  }, [])
+  }, [guestList])
 
   function handlePost(formData) {
-    fetch(`http://localhost:5000/api/Attendants`, {
+    console.log(formData)
+    fetch(`https://sarah-reimann-bday.azurewebsites.net/api/Attendants`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
     })
-      .then(response => response.json())  
+      .then(response => response.json())
       .then((data) => {
         setUser(data)
         RsvpConfirmationToggler();
@@ -51,27 +54,27 @@ function PartyControl() {
         console.log('Error posting data:', error);
       });
 
-      // set new guest list
-    fetch(`https://localhost:5001/api/Attendants`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`${response.status}: ${response.statusText}`)
-        } else {
-          return response.json()
-        }
-      })
-      .then((jsonifiedResponse) => {
-        setGuestList(jsonifiedResponse)
-        setIsLoaded(true)
-      })
-      .catch((error) => {
-        setError(error.message)
-        setIsLoaded(true)
-      });
+    // set new guest list
+    // fetch(`https://sarah-reimann-bday.azurewebsites.net/api/Attendants`)
+    //   .then(response => {
+    //     if (!response.ok) {
+    //       throw new Error(`${response.status}: ${response.statusText}`)
+    //     } else {
+    //       return response.json()
+    //     }
+    //   })
+    //   .then((jsonifiedResponse) => {
+    //     setGuestList(jsonifiedResponse)
+    //     setIsLoaded(true)
+    //   })
+    //   .catch((error) => {
+    //     setError(error.message)
+    //     setIsLoaded(true)
+    //   });
   };
 
   const deleteGuest = (id) => {
-    fetch(`http://localhost:5000/api/Attendants/${id}`, {
+    fetch(`https://sarah-reimann-bday.azurewebsites.net/api/Attendants/${id}`, {
       method: 'DELETE'
     })
       .catch((error) => {
@@ -79,7 +82,8 @@ function PartyControl() {
       });
     deleteConfirmationPopUp();
     setTimeout(() => {
-      homeToggler()}, 2000)
+      homeToggler()
+    }, 2000)
   }
 
   const deleteConfirmationPopUp = () => {
@@ -117,26 +121,42 @@ function PartyControl() {
   let currentlyVisible;
 
   if (partyDetailsPage) {
-    currentlyVisible = <PartyDetails />
+    currentlyVisible =
+      <>
+        <NavBar user={user} homeClick={homeToggler} guestListClick={guestListToggler} rsvpClick={showRsvp} />
+        <PartyDetails />
+      </>
   } else if (rsvp) {
-    currentlyVisible = <RSVPForm onRSVPClick={handlePost} />
+    currentlyVisible =
+      <>
+        <NavBar user={user} homeClick={homeToggler} guestListClick={guestListToggler} rsvpClick={showRsvp} />
+        <RSVPForm onRSVPClick={handlePost} />
+      </>
+
   } else if (confirmaitonPage) {
-    currentlyVisible = <RSVPConfirm userInfo={user} looksGood={guestListToggler} delete={deleteGuest} />
+    currentlyVisible =
+      <>
+        <NavBar user={user} homeClick={homeToggler} guestListClick={guestListToggler} rsvpClick={showRsvp} />
+        <RSVPConfirm userInfo={user} looksGood={guestListToggler} delete={deleteGuest} />
+      </>
+
   } else if (showGuestList) {
     error ?
       currentlyVisible = <h1>Error: {error}</h1> :
       (!isLoaded) ?
         currentlyVisible = <h1>.........loading god okay........</h1> :
-        currentlyVisible = <GuestList guestList={guestList} />
+        currentlyVisible =
+        <>
+          <NavBar user={user} homeClick={homeToggler} guestListClick={guestListToggler} rsvpClick={showRsvp} />
+          <GuestList guestList={guestList} />
+        </>
   } else if (deleteConfirm) {
     currentlyVisible = <h1>Your RSVP is being deleted...</h1>
   }
   return (
     <>
+      <Header />
       {currentlyVisible}
-      <button onClick={showRsvp}>RSVP!</button>
-      <button onClick={guestListToggler}>See The Guests</button>
-      <button onClick={homeToggler}>Party Deets</button>
     </>
   )
 }
