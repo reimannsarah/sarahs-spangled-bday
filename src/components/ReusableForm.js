@@ -11,8 +11,8 @@ function ReusableForm(props) {
 
       <label htmlFor="plusOne">Plus One?</label>
       <select name="plusOne" id="plusOne">
-        <option value="true">Yes</option>
-        <option value="false">No</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
       </select>
 
       <label htmlFor="species">Species:</label>
