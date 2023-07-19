@@ -8,7 +8,6 @@ function RSVPForm(props) {
     props.onRSVPClick({
         name: e.target.name.value,
         email: e.target.email.value,
-        plusOne: e.target.plusOne.value,
         species: e.target.species.value,
         doYouBelieve: e.target.belief.value,
     })
