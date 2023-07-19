@@ -10,9 +10,8 @@ function GuestList(props) {
           <li key={index}>
             <h3>{guest.name}</h3>
             <p>{guest.email}</p>
-            <p>Plus One? {guest.plusOne ? "yes" : "no"}</p>
             <p>Species: {guest.species}</p>
-            <p>Do You Believe? {guest.belief}</p>
+            <p>Do You Believe? {guest.doYouBelieve}</p>
           </li>
         )}
       </ul>
