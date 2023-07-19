@@ -9,7 +9,6 @@ function RSVPConfirm(props) {
       <p>Name: {thisUser.name}</p>
       <p>Email: {thisUser.email}</p>
       <p>Species: {thisUser.species}</p>
-      <p>Plus One? {thisUser.plusOne}</p>
       <p>Do You Believe? {thisUser.doYouBelieve}</p>
       <hr />
       <button onClick={props.looksGood}>Looks Good!</button>
