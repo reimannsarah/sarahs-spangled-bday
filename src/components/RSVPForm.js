@@ -9,8 +9,8 @@ function RSVPForm(props) {
         name: e.target.name.value,
         email: e.target.email.value,
         plusOne: e.target.plusOne.value,
-        belief: e.target.belief.value,
-        species: e.target.species.value
+        species: e.target.species.value,
+        doYouBelieve: e.target.belief.value,
     })
   }
 
