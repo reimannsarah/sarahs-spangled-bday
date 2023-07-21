@@ -1,3 +1,5 @@
+import React from "react";
+
 function RSVPConfirm(props) {
   const thisUser = props.userInfo
   return (

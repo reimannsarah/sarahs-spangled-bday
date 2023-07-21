@@ -1,4 +1,5 @@
-import berli from '../imgs/berli-smash.gif'
+import berli from '../imgs/berli-smash.gif';
+import React from "react";
 
 function PartyDetails() {
   return (
