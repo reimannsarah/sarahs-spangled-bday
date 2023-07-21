@@ -168,7 +168,7 @@ form button :hover {
   justify-content: space-evenly;
 }
 
-.footer img {
+.header img {
   width: 5%;
   animation: moveScooter 10s linear infinite;
 }
