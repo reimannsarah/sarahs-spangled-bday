@@ -55,6 +55,7 @@ body {
   text-align: center;
   background-color: var(--light-purple);
   color: white;
+  margin-bottom: 15%;
 }
 
 .party-details h1 {
@@ -83,6 +84,7 @@ body {
 }
 .guest-list ul {
   padding: 10px;
+  margin-bottom: 15%;
 }
 
 .guest-list h3 {
@@ -116,6 +118,7 @@ form {
   width: 60%;
   background-color: var(--light-purple);
   padding: 30px 50px;
+  margin-bottom: 15%;
 }
 
 form input, textarea {
