@@ -1,7 +1,7 @@
 {
   "hosting": {
     "predeploy": ["npm ci,", "npm run build"],
-    "public": "build",
+    "public": "./build",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -10,7 +10,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.js"
+        "destination": "/index.html"
       }
     ]
   }
