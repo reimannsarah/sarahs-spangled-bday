@@ -1,7 +1,7 @@
 {
   "hosting": {
     "predeploy": [
-      "npm ci,",
+      "npm install",
       "npm run build"
     ],
     "public": "./build",
