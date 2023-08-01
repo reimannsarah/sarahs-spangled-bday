@@ -6,7 +6,7 @@ function PartyDetails() {
     <div className="party-details">
       <h1>LET'S RAGE </h1>
       <h4>When: </h4>
-      <p>September 16th at 6pm</p>
+      <p>September 16th at 7pm</p>
       <h4>Where: </h4>
       <p>Sarah and Lucy's Castle</p>
       <p>2126 NE 49th Avenue</p>
