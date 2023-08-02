@@ -72,7 +72,7 @@ body {
   width: 50%;
 }
 
-.guest-list h1 {
+.guests h1 {
   text-align: center;
   background-color: var(--green);
   width: 80%;
@@ -82,12 +82,12 @@ body {
   border: 2px solid white;
   box-shadow: 4px 4px 4px var(--green);
 }
-.guest-list ul {
+.guest-list {
   padding: 10px;
   margin-bottom: 15%;
 }
 
-.guest-list h3 {
+.guest h3 {
   text-align: center;
   background-color: var(--red-orange);
   margin: 0 15px;
@@ -97,7 +97,7 @@ body {
   color: white;
 }
 
-.guest-list li {
+.guest {
   padding: 9px;
   list-style: none;
   background-color: var(--orange);
