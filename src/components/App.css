@@ -240,7 +240,7 @@ form button :hover {
 
   @keyframes movePickle {
     from {
-      transform: translateX(500%);
+      transform: translateX(300%);
     }
     to {
       transform: translateX(-100%);
