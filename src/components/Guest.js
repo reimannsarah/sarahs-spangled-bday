@@ -7,7 +7,6 @@ function Guest(props) {
       <h3>{props.name}</h3>
       <p><strong>Species:</strong> {props.species}</p>
       <p><strong>Do You Believe?</strong> {props.doYouBelieve}</p>
-      <p id="email">{props.email}</p>
     </div>
   )
 }

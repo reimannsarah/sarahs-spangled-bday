@@ -7,7 +7,6 @@ function RSVPForm(props) {
     e.preventDefault();
     props.onRSVPClick({
         name: e.target.name.value,
-        email: e.target.email.value,
         species: e.target.species.value,
         doYouBelieve: e.target.belief.value,
     })

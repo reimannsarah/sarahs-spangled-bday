@@ -8,7 +8,6 @@ function GuestDetail(props) {
       <h1>Double Check</h1>
       <hr />
       <p><strong>Name:</strong> {guest.name}</p>
-      <p><strong>Email:</strong> {guest.email}</p>
       <p><strong>Species:</strong> {guest.species}</p>
       <p><strong>Do You Believe?</strong> {guest.doYouBelieve}</p>
       <hr />
