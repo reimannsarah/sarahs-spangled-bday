@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import PartyDetails from './PartyDetails';
 import RSVPConfirm from './RSVPConfirm';
 import RSVPForm from './RSVPForm';
+import GuestDetail from './GuestDetail';
 
 function PartyControl() {
   const [error, setError] = useState(null);
@@ -14,8 +15,10 @@ function PartyControl() {
   const [rsvp, setRsvp] = useState(null);
   const [showGuestList, setShowGuestList] = useState(null);
   const [partyDetailsPage, setPartyDetailsPage] = useState(true);
-  const [confirmaitonPage, setConfirmationPage] = useState(null);
+  const [confirmationPage, setConfirmationPage] = useState(null);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
+  const [guest, setGuest] = useState(null);
+  const [guestDetail, setGuestDetail] = useState(false);
 
   useEffect(() => {
     fetch(`https://sarah-reimann-bday.azurewebsites.net/api/Attendants`)
@@ -37,7 +40,6 @@ function PartyControl() {
   }, [guestList])
 
   function handlePost(formData) {
-    console.log(formData)
     fetch(`https://sarah-reimann-bday.azurewebsites.net/api/Attendants`, {
       method: 'POST',
       headers: {
@@ -53,27 +55,10 @@ function PartyControl() {
       .catch((error) => {
         console.log('Error posting data:', error);
       });
-
-    // set new guest list
-    // fetch(`https://sarah-reimann-bday.azurewebsites.net/api/Attendants`)
-    //   .then(response => {
-    //     if (!response.ok) {
-    //       throw new Error(`${response.status}: ${response.statusText}`)
-    //     } else {
-    //       return response.json()
-    //     }
-    //   })
-    //   .then((jsonifiedResponse) => {
-    //     setGuestList(jsonifiedResponse)
-    //     setIsLoaded(true)
-    //   })
-    //   .catch((error) => {
-    //     setError(error.message)
-    //     setIsLoaded(true)
-    //   });
   };
 
   const deleteGuest = (id) => {
+    console.log(id);
     fetch(`https://sarah-reimann-bday.azurewebsites.net/api/Attendants/${id}`, {
       method: 'DELETE'
     })
@@ -84,7 +69,27 @@ function PartyControl() {
     setTimeout(() => {
       homeToggler()
     }, 2000)
-  }
+  };
+
+  const getGuest = async (id) => {
+    console.log(id);
+    console.log(guest);
+    fetch(`https://sarah-reimann-bday.azurewebsites.net/api/Attendants/${id}`)
+      .then(async response => {
+        const data = await response.json();
+
+        if (!response.ok) {
+          const error = response.statusText;
+          return Promise.reject(error);
+        }
+        setGuest(data);
+        guestToggler();
+      })
+      .catch(error => {
+        console.log("There was an error retrieving the requested data", error)
+      });
+  };
+
 
   const deleteConfirmationPopUp = () => {
     setDeleteConfirm(true);
@@ -111,12 +116,22 @@ function PartyControl() {
     setConfirmationPage(false);
   }
 
+  const guestToggler = () => {
+    setGuestDetail(true);
+    setShowGuestList(false);
+    setRsvp(false);
+    setPartyDetailsPage(false);
+    setConfirmationPage(false);
+    setDeleteConfirm(false);
+  }
+
   const homeToggler = () => {
     setPartyDetailsPage(true);
     setShowGuestList(false);
     setRsvp(false);
     setConfirmationPage(false);
   }
+
 
   let currentlyVisible;
 
@@ -133,7 +148,7 @@ function PartyControl() {
         <RSVPForm onRSVPClick={handlePost} />
       </>
 
-  } else if (confirmaitonPage) {
+  } else if (confirmationPage) {
     currentlyVisible =
       <>
         <NavBar user={user} homeClick={homeToggler} guestListClick={guestListToggler} rsvpClick={showRsvp} />
@@ -148,10 +163,17 @@ function PartyControl() {
         currentlyVisible =
         <>
           <NavBar user={user} homeClick={homeToggler} guestListClick={guestListToggler} rsvpClick={showRsvp} />
-          <GuestList guestList={guestList} />
+          <GuestList guestList={guestList} onGuestClick={getGuest} />
         </>
   } else if (deleteConfirm) {
     currentlyVisible = <h1>Your RSVP is being deleted...</h1>
+  } else if (guestDetail) {
+    currentlyVisible =
+      <GuestDetail
+        guest={guest}
+        onClickingDelete={deleteGuest}
+        onLooksGood={guestListToggler}
+      />
   }
   return (
     <>
@@ -159,6 +181,8 @@ function PartyControl() {
       {currentlyVisible}
     </>
   )
+
 }
+
 
 export default PartyControl;
