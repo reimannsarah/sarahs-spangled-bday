@@ -72,8 +72,6 @@ function PartyControl() {
   };
 
   const getGuest = async (id) => {
-    console.log(id);
-    console.log(guest);
     fetch(`https://sarah-reimann-bday.azurewebsites.net/api/Attendants/${id}`)
       .then(async response => {
         const data = await response.json();
