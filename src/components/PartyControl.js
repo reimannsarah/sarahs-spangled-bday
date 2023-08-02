@@ -167,11 +167,14 @@ function PartyControl() {
     currentlyVisible = <h1>Your RSVP is being deleted...</h1>
   } else if (guestDetail) {
     currentlyVisible =
-      <GuestDetail
-        guest={guest}
-        onClickingDelete={deleteGuest}
-        onLooksGood={guestListToggler}
-      />
+    <>
+      <NavBar user={user} homeClick={homeToggler} guestListClick={guestListToggler} rsvpClick={showRsvp} />
+        <GuestDetail
+          guest={guest}
+          onClickingDelete={deleteGuest}
+          onLooksGood={guestListToggler}
+        />
+      </>
   }
   return (
     <>
