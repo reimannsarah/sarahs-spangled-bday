@@ -4,18 +4,19 @@ function RSVPConfirm(props) {
   const thisUser = props.userInfo
   return (
     
-    <div>
+    <div className="confirmation">
       <h1>RSVP Confirmation</h1>
       <p>Does your information look correct?</p>
       <hr />
-      <p>Name: {thisUser.name}</p>
-      <p>Email: {thisUser.email}</p>
-      <p>Species: {thisUser.species}</p>
-      <p>Do You Believe? {thisUser.doYouBelieve}</p>
+      <p><strong>Name:</strong> {thisUser.name}</p>
+      <p><strong>Email:</strong> {thisUser.email}</p>
+      <p><strong>Species:</strong> {thisUser.species}</p>
+      <p><strong>Do You Believe?</strong> {thisUser.doYouBelieve}</p>
       <hr />
-      <button onClick={props.looksGood}>Looks Good!</button>
-      <button>Edit my RSVP</button>
-      <button onClick={() => props.delete(thisUser.attendantId)}>Delete my RSVP</button>
+      <div className="buttons">
+        <button onClick={props.looksGood}>Looks Good!</button>
+        <button onClick={() => props.delete(thisUser.attendantId)}>Start Over</button>
+      </div>
     </div>
   )
 }

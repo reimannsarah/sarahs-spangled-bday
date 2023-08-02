@@ -55,7 +55,7 @@ body {
   text-align: center;
   background-color: var(--light-purple);
   color: white;
-  margin-bottom: 15%;
+  margin-bottom: 25%;
 }
 
 .party-details h1 {
@@ -82,9 +82,10 @@ body {
   border: 2px solid white;
   box-shadow: 4px 4px 4px var(--green);
 }
+
 .guest-list {
   padding: 10px;
-  margin-bottom: 15%;
+  margin-bottom: 20%;
 }
 
 .guest h3 {
@@ -110,6 +111,43 @@ body {
   display: block;
 }
 
+.confirmation {
+  width: 50%;
+  margin: 10% auto;
+  padding: 25px;
+  border: 3px solid white;
+  border-radius: 8px;
+  background-color: var(--red-orange);
+  color: white;
+}
+
+.confirmation h1 {
+  font-family: var(--header-font);
+  text-align: center;
+  margin-top: 0;
+  border-radius: 8px;
+  border: 3px solid white;
+  color: var(--green);
+  background-color: var(--orange);
+  padding: 3px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.confirmation button {
+  border: none;
+  margin: 5px;
+  padding: 5px 9px;
+  background-color: var(--light-purple);
+  border-radius: 8px;
+  border: 1px solid white;
+  color: white;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -118,7 +156,7 @@ form {
   width: 60%;
   background-color: var(--light-purple);
   padding: 30px 50px;
-  margin-bottom: 15%;
+  margin-bottom: 25%;
 }
 
 form input, textarea {
@@ -148,13 +186,6 @@ form button {
 form button :hover {
   cursor: pointer;
 }
-
-/* form button :active {
-  background-color: white;
-  color: var(--dark-purple);
-  border: 2px solid var(--dark-purple);
-  transform: translateY(2px);
-} */
 
 .footer {
   position: fixed;
