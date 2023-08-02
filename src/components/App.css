@@ -257,4 +257,8 @@ form button :hover {
     color: var(--light-purple);
   }
 
+  .confirmation {
+    margin-bottom: 20%;
+  }
+
 }
