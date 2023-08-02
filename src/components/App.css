@@ -252,4 +252,9 @@ form button :hover {
     width: 20%;
   }
 
+  .footer {
+    font-size: 10px;
+    color: var(--light-purple);
+  }
+
 }
