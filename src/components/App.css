@@ -67,6 +67,7 @@ body {
   margin: 50px;
   width: 80%;
 }
+
 .banana-pickle {
   animation: movePickle 10s linear infinite;
   width: 50%;
@@ -232,4 +233,23 @@ form button :hover {
   to {
     transform: translateX(-1100%);
   }
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+  @keyframes movePickle {
+    from {
+      transform: translateX(500%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  .banana-pickle {
+    animation: movePickle 10s linear infinite;
+    width: 20%;
+  }
+
 }
